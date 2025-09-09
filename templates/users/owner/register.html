@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1 class="text-center">Owner Register</h1>
+    <form action="" method="post" class="container mt-5" enctype="multipart/form-data">
+      {% csrf_token %}
+    <input type="text" name="first_name" class="form-control mb-3" placeholder="First Name">
+    <input type="text" name="last_name" class="form-control mb-3" placeholder="Last Name">
+    <input type="text" name="username" class="form-control mb-3" placeholder="username">
+    <input type="email" name="email" class="form-control mb-3" placeholder="email">
+    <input type="text" name="phone" class="form-control mb-3" placeholder="phone no">
+    <input type="date" name="dob" class="form-control mb-3" placeholder="dob">
+    <input type="text" name="aadhar" class="form-control mb-3" placeholder="aadhar no">
+    <input type="text" name="address" class="form-control mb-3" placeholder="address">
+    <input type="file" name="image" class="form-control mb-3" placeholder="image">
+    <input type="password" name="password1" class="form-control mb-3" placeholder="password">
+    <input type="password" name="password2" class="form-control mb-3" placeholder="confirm password">
+
+
+  <button class="btn btn-primary success" type="submit">register</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

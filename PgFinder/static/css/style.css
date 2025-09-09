@@ -1,0 +1,213 @@
+:root {
+  --bg: #0b0b0c;
+  --fg: #0e0f11;
+  --ink: #ffffff; /* pure white text */
+  --muted: #d1d5db;
+  --ring: rgba(255,255,255,.08);
+  --accent: #3b82f6;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+  --shadow-sm: 0 6px 18px rgba(0,0,0,.6);
+  --shadow-md: 0 20px 40px rgba(0,0,0,.6);
+  --container: 1200px;
+}
+
+/* === Full-page blurred room background === */
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  font-family: "Times New Roman", Times, serif;
+  color: var(--ink);
+  background: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5); /* dark overlay */
+  backdrop-filter: blur(8px);  /* blur the background */
+  z-index: -1; /* behind all content */
+}
+
+/* Container */
+.container, .header, .hero, .grid, .right-card, .modal, .footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reset & base */
+* { box-sizing: border-box; }
+html, body { height:100%; }
+
+/* Container width */
+.container { width: min(100%, var(--container)); margin-inline:auto; padding: 0 16px }
+
+/* Header */
+.header {
+  position: sticky;
+  top:0;
+  z-index:40;
+  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,.6);
+  border-bottom:1px solid var(--ring);
+}
+.header-inner { display:flex; align-items:center; justify-content:space-between; height:64px; }
+.brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:18px; color:var(--ink); }
+.brand-badge { width:36px; height:36px; display:grid; place-items:center; background:#111827; color:#fff; border-radius:8px; font-weight:700; }
+.nav { display:none; gap:18px; }
+.nav a { color:var(--ink); }
+.cta { border:0; background:#2563eb; color:#fff; padding:10px 14px; border-radius:12px; font-weight:600; cursor:pointer; }
+
+/* show nav on desktop */
+@media (min-width:768px){ .nav { display:flex } }
+
+/* Hero + Search */
+.hero { padding: 32px 0 18px }
+.h1 { font-size: clamp(28px, 3.8vw, 44px); font-weight:800; color:var(--ink); margin-bottom:6px; }
+.sub { margin-top:6px; color:var(--muted) }
+.search-grid { display:block; }
+.search-card {
+  margin-top:18px;
+  display:grid;
+  gap:10px;
+  grid-template-columns: 1fr;
+  background: rgba(0,0,0,.55);
+  border:1px solid var(--ring);
+  border-radius: var(--radius-xl);
+  padding:12px;
+}
+.field {
+  display:flex; align-items:center; gap:8px;
+  background:#111827;
+  border-radius:14px; padding:10px 12px; color:var(--ink);
+  border:1px solid rgba(255,255,255,.04);
+}
+.field input, .field select { border:0; outline:0; width:100%; background:transparent; color:var(--ink); font: inherit; }
+
+/* === dropdown override === */
+.field select {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+/* Buttons */
+.btn { border:0; background:#2563eb; color:#fff; padding:12px 14px; border-radius:14px; font-weight:700; cursor:pointer; }
+
+/* Chips */
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; align-items:center; color:var(--ink) }
+.chip { border:1px solid rgba(255,255,255,.04); padding:6px 10px; border-radius:999px; font-size:12px; background:transparent; color:var(--ink); cursor:pointer; }
+
+/* Right card */
+.right-card {
+  background: linear-gradient(135deg,#0f172a,#111827);
+  border-radius:14px; padding:14px; color:var(--ink); margin-top:14px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Toolbar */
+.toolbar { display:flex; align-items:center; justify-content:space-between; margin-top:24px; color:var(--ink) }
+.count { font-size:14px }
+.sort { display:flex; align-items:center; gap:8px }
+.sort select { border:1px solid rgba(255,255,255,.04); border-radius:10px; padding:8px 10px; background:transparent; color:var(--ink); }
+
+/* Grid */
+.grid { display:grid; grid-template-columns:1fr; gap:14px; margin:16px 0 40px; }
+@media (min-width:680px){ .grid{ grid-template-columns: repeat(2, 1fr) } }
+@media (min-width:1040px){ .grid{ grid-template-columns: repeat(3, 1fr) } }
+
+/* Card */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.04);
+  border-radius: var(--radius-lg);
+  overflow:hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+  color:var(--ink);
+}
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.cover { position:relative; height:180px; overflow:hidden; }
+.cover img { width:100%; height:100%; object-fit:cover; display:block; transition: transform .35s ease; }
+.card:hover .cover img { transform: scale(1.03); }
+.pin { position:absolute; left:10px; bottom:10px; font-size:12px; background: rgba(0,0,0,.6); color:#fff; padding:6px 8px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+.fav { position:absolute; right:10px; top:10px; background:rgba(255,255,255,.03); border:0; width:34px; height:34px; border-radius:50%; display:grid; place-items:center; cursor:pointer; }
+.fav.active { color:#ef4444; }
+.body { padding:14px; }
+.title { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.title h3 { margin:0; font-size:18px; }
+.muted { color:var(--muted); font-size:12px; }
+.price { font-weight:800; font-size:16px; color:var(--accent); }
+/* === Room Cards Outline & Book a Visit Button === */
+.card {
+  border: 2px solid rgba(255,255,255,0.15); /* outline for each card */
+  padding: 8px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .3s ease;
+}
+
+.card:hover {
+  border-color: rgba(255,255,255,0.35); /* highlight on hover */
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Card buttons */
+.card .btn, .card button {
+  background: #10b981; /* green professional look */
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  text-align: center;
+  /* Card buttons container */
+.card-buttons {
+  display: flex;
+  gap: 12px; /* button ke beech gap */
+  margin-top: 12px;
+}
+
+/* Individual buttons inside card */
+.card-buttons .btn, .card-buttons button {
+  flex: 1; /* dono buttons equal width */
+}
+
+}
+
+/* Hover effect */
+.card .btn:hover, .card button:hover {
+  background: #059669; /* darker green on hover */
+  transform: translateY(-2px);
+}
+
+
+/* Modal */
+.modal { position: fixed; inset:0; background: rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; padding:18px; z-index:80; }
+.modal.open { display:flex; }
+.sheet { width:min(940px,96vw); background:#0b0b0c; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.04); }
+.sheet-head { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.03); color:var(--ink); }
+.sheet-body { display:grid; grid-template-columns:1fr; gap:14px; padding:14px; color:var(--ink); }
+@media (min-width:900px){ .sheet-body{ grid-template-columns:1.2fr .8fr } }
+.gallery img { width:100%; height:160px; object-fit:cover; border-radius:8px; margin-bottom:8px; }
+/* 👇 Add gap between Book a Visit & Call/View Details buttons in modal */
+.modal .sheet-body > div:last-child > div {
+    display: flex;       /* ensure buttons are in row */
+    gap: 12px;           /* space between buttons */
+    margin-top: 12px;    /* top margin */
+}
+
+
+/* Footer */
+.footer { border-top:1px solid rgba(255,255,255,.03); padding:18px 0; background: rgba(0,0,0,.5); color:var(--ink); text-align:center; }
+
+/* Small */
+.small { color:var(--muted); font-size:13px; }
+
+/* Responsive tweaks */
+@media (max-width:900px){
+  .right-card { margin-top:20px; }
+}
