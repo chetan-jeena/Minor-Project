@@ -1,17 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>PG Finder Login</title>
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
-    <form action="{%url 'user_login'%}" method="post">
-        {% csrf_token %}
-        <input type="email" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="password">
-        <button type="submit">login</button>
-
+  <div class="background"></div>
+  <div class="container">
+    <div class="left-section">
+      <h1>
+        <span>There's a smarter<br>way to PG's<br>around</span>
+      </h1>
+      <p>
+        Sign up with your details and get exclusive access to discounts and savings on PG stays and with our many partners.
+      </p>
+    </div>
+    <form class="login-form">
+      <div class="vertical-text">PG Finder Login</div>
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+      <div class="form-links">
+        <a href="#">Owner Register?</a>
+        <a href="#">Guest Register?</a>
+        <a href="#">Forgot Password?</a>
+      </div>
     </form>
+  </div>
 </body>
 </html>
