@@ -10,6 +10,7 @@
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-sA+e2Jb3rVbQKkqgC3kG1g2h1xg2P9rV+l9g6q1gQ5M=" crossorigin=""/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   
   <style>
@@ -67,14 +68,14 @@
 
       <!-- 👇 New Login / Signup buttons -->
       <div class="auth-buttons">
-        <a href="login.html" class="login"><i class="ri-login-circle-line"></i> Login</a>
-        <a href="signup.html" class="signup"><i class="ri-user-add-line"></i> Signup</a>
+        <a href="{% url 'user_login' %}" class="login"><i class="ri-login-circle-line"></i> Login</a>
+        <a href="#" class="signup"><i class="ri-user-add-line"></i> Signup</a>
       </div>
 
       <button class="cta">List your PG</button>
     </div>
   </header>
-
+  {% block content %}
   <!-- Hero + Search -->
   <section class="hero">
     <div class="container search-grid">
@@ -175,7 +176,7 @@
 
     </div>
   </section>
-
+{% endblock %}
   <!-- Footer -->
   <footer class="footer">
     <div class="container small">
@@ -212,9 +213,10 @@
   </div>
 
   <!-- Leaflet JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-vh0XQ5Y4LQJ0z9QeW+gGJf4y2tQ0y1C2k3m3b8k7F2s=" crossorigin=""></script>
 
-  {% comment %} <script src="script.js"></script> {% endcomment %}
+  {% comment %} <script src="{% static 'js/script.js' %}"></script> {% endcomment %}
 </body>
 </html>
