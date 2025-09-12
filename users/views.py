@@ -34,16 +34,16 @@ def client_register(request):
         password = request.POST.get('password1')
         confirm_password = request.POST.get('password2')
         if password != confirm_password:
-            return render(request, 'users/register.html', {'error': 'Passwords do not match'})
+            return render(request, 'users/clients/client_register.html', {'error': 'Passwords do not match'})
         address = request.POST.get('address')
 
         
         if MyUser.objects.filter(username=username).exists():
-            return render(request, 'users/register.html', {'error': 'Username already exists'})
+            return render(request, 'users/clients/client_register.html', {'error': 'Username already exists'})
         if MyUser.objects.filter(email=email).exists():
-            return render(request, 'users/register.html', {'error': 'Email already exists'})
+            return render(request, 'users/clients/client_register.html', {'error': 'Email already exists'})
         if MyUser.objects.filter(phone=phone).exists():
-            return render(request, 'users/register.html', {'error': 'Phone number already exists'})
+            return render(request, 'users/clients/client_register.html', {'error': 'Phone number already exists'})
         # Create the ClientProfile object
         client_profile = MyUser(
             first_name=first_name,
@@ -57,9 +57,9 @@ def client_register(request):
         )
         client_profile.set_password(password)
         client_profile.save()
-        return render(request, 'users/register.html', {'success': 'Registration successful'})
+        return render(request, 'users/clients/client_register.html', {'success': 'Registration successful'})
 
-    return render(request, 'users/register.html')
+    return render(request, 'users/clients/client_register.html')
 
 def owner_register(request):
     if request.method == 'POST':
@@ -70,8 +70,8 @@ def owner_register(request):
         phone = request.POST.get('phone')
         dob = request.POST.get('dob')
         aadhar_no = request.POST.get('aadhar')
-        password = request.POST.get('password1')
-        confirm_password = request.POST.get('password2')
+        password = request.POST.get('create_password')
+        confirm_password = request.POST.get('confirm_password')
         if password != confirm_password:
             return render(request, 'users/owners/register.html', {'error': 'Passwords do not match'})
         image = request.FILES.get('image')
@@ -109,6 +109,8 @@ def owner_register(request):
     return render(request, 'users/owners/register.html')
 
 
+def signup(request):
+    return render(request, 'users/signup.html')
 
 def user_logout(request):
     logout(request)

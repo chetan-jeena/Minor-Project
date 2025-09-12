@@ -1,0 +1,8 @@
+{% extends "users/owners/register.html" %}
+{% block usertype %}Client{% endblock %}
+
+{% block aadhar %}{% endblock %}
+{% block image_upload %}
+<input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage(event)" >
+<div class="form-text">Upload a profile picture (optional).</div>
+{% endblock %}

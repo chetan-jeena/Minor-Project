@@ -7,7 +7,7 @@ class MyUserAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
 
     fieldsets = (
-        (None, {'fields': ('email', 'username', 'first_name', 'last_name', 'date_of_birth', 'phone', 'profile_image','image_tag', 'is_owner', 'aadhar_card', 'address', 'city', 'state', 'pin_code', 'is_admin', 'is_staff', 'is_active', 'is_superadmin')}),
+        (None, {'fields': ('email', 'username', 'password', 'first_name', 'last_name', 'date_of_birth', 'phone', 'profile_image','image_tag', 'is_owner', 'aadhar_card', 'address', 'city', 'state', 'pin_code', 'is_admin', 'is_staff', 'is_active', 'is_superadmin')}),
     )
 
     def image_tag(self, obj):
