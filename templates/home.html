@@ -1,83 +1,6 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% block title %}PG Finder • Simple & Fast{% endblock %}</title>
-  <meta name="description" content="Find PGs near your college or office — filters, favorites, quick contact." />
-  {% block link %}
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-sA+e2Jb3rVbQKkqgC3kG1g2h1xg2P9rV+l9g6q1gQ5M=" crossorigin=""/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  {% endblock %}
-  <style>
-    /*  extra styles for login/signup buttons */
-    .auth-buttons {
-      display: flex;
-      gap: 10px;
-      margin-left: 20px;
-    }
-    .auth-buttons a {
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .auth-buttons .login {
-      background: #f5f5f5;
-      color: #333;
-      border: 1px solid #ddd;
-    }
-    .auth-buttons .login:hover {
-      background: #e0e0e0;
-    }
-    .auth-buttons .signup {
-      background: #007bff;
-      color: #fff;
-    }
-    .auth-buttons .signup:hover {
-      background: #0056b3;
-    }
 
-    /* 👇 GAP BETWEEN BOOK A VISIT & VIEW DETAILS BUTTON */
-    #modal .sheet-body > div:last-child > div {
-      display: flex;
-      gap: 12px; /* <-- This adds gap between the buttons */
-      margin-top: 12px;
-    }
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="brand-badge"><a href="{% url 'home' %}">PG</a></div>
-        <div><a href="{% url 'home' %}" class="btn btn-primary">PG Finder</a></div>
-      </div>
-      <nav class="nav small">
-        <a href="#explore">Explore</a>
-        <a href="#map">Map</a>
-        <a href="#how">How it works</a>
-      </nav>
-
-      <!-- 👇 New Login / Signup buttons -->
-      <div class="auth-buttons">
-        <a href="{% url 'user_login' %}" class="login"><i class="ri-login-circle-line"></i> Login</a>
-        <a href="{% url 'signup' %}" class="signup"><i class="ri-user-add-line"></i> Signup</a>
-      </div>
-
-      <button class="cta">List your PG</button>
-    </div>
-  </header>
   {% block content %}
   <!-- Hero + Search -->
   <section class="hero">
@@ -179,14 +102,8 @@
 
     </div>
   </section>
-{% endblock %}
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container small">
-      © <span id="year"></span> PG Finder • Built with the Beloved Devlopers.
-    </div>
-  </footer>
 
+  
   <!-- Modal -->
   <div class="modal" id="modal">
     <div class="sheet">
@@ -216,10 +133,12 @@
   </div>
 
   <!-- Leaflet JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-vh0XQ5Y4LQJ0z9QeW+gGJf4y2tQ0y1C2k3m3b8k7F2s=" crossorigin=""></script>
-
+  integrity="sha256-vh0XQ5Y4LQJ0z9QeW+gGJf4y2tQ0y1C2k3m3b8k7F2s=" crossorigin=""></script>
+  
   {% comment %} <script src="{% static 'js/script.js' %}"></script> {% endcomment %}
 </body>
 </html>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "home.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block link %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}" />
@@ -14,22 +14,32 @@
 {% block content %}
 <section class="section-conten padding-y" style="min-height:67vh">
 
+{% if request.GET.command == 'verification' %}
+<div class="container mx-auto alert alert-info text-center" role="alert" style="max-width: 1024px; margin-top:100px;">
+Thank you for registering with us. We have sent you a verification email to your email address [{{ request.GET.email }}].
+<br><br>
+Already verified? <a href="{% url 'user_login' %}">Login</a>
+</div>
+
+{% else %}
+
 <!-- ============================ COMPONENT LOGIN   ================================= -->
-	<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+    {% include "includes/alert.html" %}
       <div class="card-body">
       <h4 class="card-title mb-4">Login</h4>
       <form action="{% url 'user_login' %}" method="POST">
           {% csrf_token %}
       	 
           <div class="form-group ">
-			 <input name="email" class="form-control mb-2" placeholder="Email" type="email" required autofocus>
+			 <input name="email" class="form-control mb-2" placeholder="Email or Username" type="text" required autofocus>
           </div> <!-- form-group// -->
           <div class="form-group">
 			<input name="password" class="form-control mb-2" placeholder="Password" type="password" required>
           </div> <!-- form-group// -->
           
-          <div class="form-group mb-2">
-          	<a href="#" class="float-right text-info">Forgot password?</a> 
+          <div class="form-group mb-3">
+          	<a href="{% url 'forgotPassword' %}" class="float-right">Forgot password?</a> 
             
           </div> <!-- form-group form-check .// -->
           <div class="form-group">
@@ -39,10 +49,12 @@
       </div> <!-- card-body.// -->
     </div> <!-- card .// -->
 
-     <p class="text-center mt-4">Don't have account? <a href="{% url 'signup'%}">Sign up</a></p>
+     <p class="text-center text-muted mt-4" style="color:white !important; opacity: 0.8;">Don't have account? <a  href="{% url 'signup'%}">Sign up</a></p>
      <br><br>
 <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
 
 
+{% endif %}
 </section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 {% endblock %}

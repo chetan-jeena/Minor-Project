@@ -5,10 +5,14 @@ from .models import MyUser
 class MyUserAdmin(admin.ModelAdmin):
     list_display = ('email', 'username', 'first_name', 'last_name', 'is_owner', )
     readonly_fields = ('image_tag',)
-
+    search_fields = ('email', 'username')
+    list_filter = ('is_owner', 'is_admin', 'is_staff', 'is_active')
+    ordering = ('email',)
     fieldsets = (
-        (None, {'fields': ('email', 'username', 'password', 'first_name', 'last_name', 'date_of_birth', 'phone', 'profile_image','image_tag', 'is_owner', 'aadhar_card', 'address', 'city', 'state', 'pin_code', 'is_admin', 'is_staff', 'is_active', 'is_superadmin')}),
+        (None, {'fields': ('email', 'username', 'first_name', 'last_name', 'date_of_birth', 'phone', 'profile_image','image_tag', 'is_owner', 'aadhar_card', 'address', 'city', 'state', 'pin_code', 'is_admin', 'is_staff', 'is_active', 'is_superadmin')}),
+       
     )
+    
 
     def image_tag(self, obj):
         if obj.profile_image:

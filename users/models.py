@@ -61,10 +61,8 @@ class MyUser(AbstractBaseUser):
     date_of_birth = models.DateField(blank=True, null=True)
     phone =  models.CharField(max_length=15,unique=True )
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
-    # The following fields are optional
-    # but are often included in custom user models
-    # and can be useful for various purposes.
-    # You can remove them if not
+  
+
     is_owner = models.BooleanField(default=False)
     aadhar_card = models.CharField(max_length=20, unique=True, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
@@ -77,7 +75,7 @@ class MyUser(AbstractBaseUser):
     last_login = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_superadmin = models.BooleanField(default=False)
 
 

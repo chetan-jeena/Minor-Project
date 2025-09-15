@@ -1,0 +1,22 @@
+{% load static %}
+<header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-badge">PG</div>
+        <div><a href="{% url 'home' %}" class="btn btn-primary">PG Finder</a></div>
+      </div>
+      <nav class="nav small">
+        <a href="#explore">Explore</a>
+        <a href="#map">Map</a>
+        <a href="#how">How it works</a>
+      </nav>
+
+      <!-- 👇 New Login / Signup buttons -->
+      <div class="auth-buttons">
+        <a href="{% url 'user_login' %}" class="login"><i class="ri-login-circle-line"></i> Login</a>
+        <a href="{% url 'signup' %}" class="signup"><i class="ri-user-add-line"></i> Signup</a>
+      </div>
+
+      <button class="cta">List your PG</button>
+    </div>
+  </header>
