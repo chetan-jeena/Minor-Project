@@ -12,14 +12,14 @@ class PgListing(models.Model):
     pin_code = models.CharField(max_length=10)
     price_per_month = models.DecimalField(max_digits=10, decimal_places=2)
     available_from = models.DateField()
-    # is_available = models.BooleanField(default=True)
-    # type_of_pg = models.CharField(max_length=20, choices=[
-    #     ('boys','Boys'),
-    #     ('girls','Girls'),
-    #     ('coed','Coed'),
-    #     ('family','Family')     
-    # ])
-    # amenities = models.TextField(help_text="Comma-separated list of amenities")
+    is_available = models.BooleanField(default=True)
+    type_of_pg = models.CharField(max_length=20,blank=True,null=True, choices=[
+        ('boys','Boys'),
+        ('girls','Girls'),
+        ('coed','Coed'),
+        ('family','Family')     
+    ])
+    amenities = models.TextField(help_text="Comma-separated list of amenities", blank=True, null=True)
     sharing_type = models.CharField(max_length=20, choices=[
         ('single','Single'),
         ('double','Double'),

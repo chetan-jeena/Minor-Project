@@ -58,6 +58,10 @@ class MyUser(AbstractBaseUser):
     username = models.CharField(max_length=50,unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    gender = models.CharField(max_length=30,blank=True,null=True, choices=[
+        ('male','Male'),
+        ('female','Female'),   
+    ])
     date_of_birth = models.DateField(blank=True, null=True)
     phone =  models.CharField(max_length=15,unique=True )
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)

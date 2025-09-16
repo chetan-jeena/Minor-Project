@@ -9,7 +9,7 @@ class MyUserAdmin(admin.ModelAdmin):
     list_filter = ('is_owner', 'is_admin', 'is_staff', 'is_active')
     ordering = ('email',)
     fieldsets = (
-        (None, {'fields': ('email', 'username', 'first_name', 'last_name', 'date_of_birth', 'phone', 'profile_image','image_tag', 'is_owner', 'aadhar_card', 'address', 'city', 'state', 'pin_code', 'is_admin', 'is_staff', 'is_active', 'is_superadmin')}),
+        (None, {'fields': ('email', 'username', 'first_name', 'last_name','gender', 'date_of_birth', 'phone', 'profile_image','image_tag', 'is_owner', 'aadhar_card', 'address', 'city', 'state', 'pin_code', 'is_admin', 'is_staff', 'is_active', 'is_superadmin')}),
        
     )
     
@@ -21,4 +21,5 @@ class MyUserAdmin(admin.ModelAdmin):
     image_tag.short_description = 'Profile Image'
 
 admin.site.register(MyUser, MyUserAdmin)
+
 
