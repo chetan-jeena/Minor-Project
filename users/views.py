@@ -35,6 +35,7 @@ def client_register(request):
         last_name = request.POST.get('last_name')
         username = request.POST.get('username')
         email = request.POST.get('email')
+        gender = request.POST.get('gender')
         phone = request.POST.get('phone')
         dob = request.POST.get('dob')
         password = request.POST.get('create_password')
@@ -60,6 +61,7 @@ def client_register(request):
             last_name=last_name,
             username=username,
             email=email,
+            gender=gender,
             phone=phone,
             date_of_birth=dob,
             address=address,
@@ -95,6 +97,7 @@ def owner_register(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
+        gender = request.POST.get('gender')
         dob = request.POST.get('dob')
         aadhar_no = request.POST.get('aadhar')
         password = request.POST.get('create_password')
@@ -125,6 +128,7 @@ def owner_register(request):
             email=email,
             phone=phone,
             date_of_birth=dob,
+            gender=gender,
             aadhar_card=aadhar_no,
             
             profile_image=image,

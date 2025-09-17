@@ -5,6 +5,7 @@ from users.models import MyUser as Users
 class PgListing(models.Model):
     owner = models.ForeignKey(Users, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=200,unique=True)
     description = models.TextField()
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
