@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>{{ pg.title }}</h1>
+    <p>{{ pg.description }}</p>
+    <p>Price per month: ₹ {{ pg.price_per_month }}</p>
+    <p>Address: {{ pg.address }}, {{ pg.city }}</p>
+    <p>Sharing Type: {{ pg.sharing_type }}</p>
+    <p>Contact: {{ pg.contact_number }}</p>
+    <div>
+        <h2>Images</h2>
+        {% for image in pg.images.all %}
+            <img src="{{ image.pg_image.url }}" alt="Image of {{ pg.title }}" style="max-width: 300px; margin: 10px;">
+        {% endfor %}
+    </div>
+    <div>
+        <h2>Amenities</h2>
+        <ul>
+            {{pg.amenities }}
+        </ul>
+        <div>
+{% endblock %}

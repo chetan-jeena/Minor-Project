@@ -9,53 +9,14 @@
         <h1 class="h1">Find your perfect PG near <u>college or office</u></h1>
         <p class="sub">Smart filters, verified listings, and real reviews—everything you need for a stress-free move-in.</p>
 
-        <div class="search-card" id="searchCard">
-          <label class="field">
-            <i class="ri-search-line"></i>
-            <input id="q" placeholder="Search area or PG name" />
-          </label>
-          <label class="field">
-            <i class="ri-map-pin-line"></i>
-            <select id="city" aria-label="Select city">
-              <option value="">All Cities</option>
-            </select>
-          </label>
-          <label class="field">
-            <i class="ri-home-6-line"></i>
-            <select id="gender">
-              <option value="">Any</option>
-              <option>Boys</option>
-              <option>Girls</option>
-              <option>Unisex</option>
-            </select>
-          </label>
-          <label class="field">
-            <i class="ri-money-rupee-circle-line"></i>
-            <input type="range" id="budget" min="2000" max="25000" step="500" value="12000" />
-            <span class="small" id="budgetOut">≤ 12000</span>
-          </label>
-          <button class="btn btn-search" id="btnSearch">Search PGs</button>
-        </div>
+        
 
         <div class="chips" id="amenitiesBar">
           <span class="small">Filters:</span>
         </div>
       </div>
 
-      <aside class="right-card">
-        <div style="display:flex; gap:10px; align-items:flex-start">
-          <div class="tag"><i class="ri-sparkling-2-fill"></i> Why PG Finder?</div>
-        </div>
-        <ul class="small" style="margin:12px 0 0 18px; line-height:1.6">
-          <li>Verified photos, amenities & ratings</li>
-          <li>One-tap call/WhatsApp to owner</li>
-          <li>Favorites & visit scheduling</li>
-          <li>No login required</li>
-        </ul>
-
-        <!-- MAP -->
-        <div id="map" style="height:220px; margin-top:14px; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.06)"></div>
-      </aside>
+    
     </div>
   </section>
 
@@ -79,7 +40,9 @@
       <article class="card" data-id="${p.id}">
     <div class="cover">
      {% for pgimg in pg.images.all %}
+     <a href="{% url 'pg_detail' pg.slug %}">
   <img src="{{ pgimg.pg_image.url }}" alt="{{ pg.title }}">
+  </a>
 {% endfor %}
       <div class="pin">{{pg.address}},{{pg.city}} </div>
     </div>
@@ -87,14 +50,15 @@
       <div class="title">
         <div>
           <h3>{{pg.title}}</h3>
-          <div class="muted">{{pg.sharing_type}} • ⭐ ${p.rating} • ${p.distanceKm} km</div>
+          <div class="muted">{{pg.sharing_type}}</div>
         </div>
         <div class="price">₹ {{pg.price_per_month}}</div>
       </div>
-      <div class="amen">${p.amenities.slice(0,4).map(a=>`<span>${a}</span>`).join(' ')}</div>
+      <div class="amen">${{pg.amenities}}</div>
       <div class="actions" style="margin-top:10px">
-        <button class="btn-outline " data-view="${p.id}">View details</button>
-        <button class="btn" data-book="${p.id}">Book a visit</button>
+        <a href="{% url 'pg_detail' pg.slug %}" class="btn-outline">View details</a>
+        {% comment %} <button class="btn-outline " data-view="${p.id}">View details</button> {% endcomment %}
+        {% comment %} <button class="btn" data-book="${p.id}">Book a visit</button> {% endcomment %}
       </div>
     </div>
   </article>

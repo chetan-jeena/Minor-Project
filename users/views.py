@@ -20,7 +20,7 @@ def user_login(request):
         if user is not None:
             auth.login(request, user)
             if user.is_owner:
-                return HttpResponse('owner_dashboard')
+                return HttpResponse('owner_dashboard ')
             else:
                 return HttpResponse('client_dashboard')
         else:
@@ -35,6 +35,7 @@ def client_register(request):
         last_name = request.POST.get('last_name')
         username = request.POST.get('username')
         email = request.POST.get('email')
+        gender = request.POST.get('gender')
         phone = request.POST.get('phone')
         dob = request.POST.get('dob')
         password = request.POST.get('create_password')
@@ -60,12 +61,14 @@ def client_register(request):
             last_name=last_name,
             username=username,
             email=email,
+            gender=gender,
             phone=phone,
             date_of_birth=dob,
             address=address,
             is_owner=False
         )
         client_profile.set_password(password)
+        client_profile.save()
         current_site = get_current_site(request)
         mail_subject = 'Please activate your account'
         message = render_to_string('users/account_varification_email.html',{
@@ -81,7 +84,6 @@ def client_register(request):
         except Exception as e:
             messages.error(request, f'Error sending verification email: {str(e)}')
             return redirect('client_register')
-        client_profile.save()
         messages.success(request,'Thank you for registring with us. We have sent you a verification email to your email address. Please verify it.')
         return redirect('/user/login/?command=verification&email='+email)
 
@@ -95,6 +97,7 @@ def owner_register(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
+        gender = request.POST.get('gender')
         dob = request.POST.get('dob')
         aadhar_no = request.POST.get('aadhar')
         password = request.POST.get('create_password')
@@ -125,6 +128,7 @@ def owner_register(request):
             email=email,
             phone=phone,
             date_of_birth=dob,
+            gender=gender,
             aadhar_card=aadhar_no,
             
             profile_image=image,
@@ -132,6 +136,7 @@ def owner_register(request):
             is_owner=True
         )
         owner_profile.set_password(password)
+        owner_profile.save()
         current_site = get_current_site(request)
         mail_subject = 'Please activate your account'
         message = render_to_string('users/account_varification_email.html',{
@@ -143,7 +148,6 @@ def owner_register(request):
         to_email = email
         send_email = EmailMessage(mail_subject,message,to=[to_email])
         send_email.send()
-        owner_profile.save()
 
         # messages.success(request,'Thank you for registring with us. We have sent you a verification email to your email address. Please verify it.')
         return redirect('/user/login/?command=verification&email='+email)
@@ -166,7 +170,7 @@ def activate(request,uidb64,token):
         return redirect('user_login')
     else:
         messages.error(request, 'Invalid activate link')
-        if user.is_owner:
+        if user is not None and user.is_owner:
             return redirect('owner_register')
         else:
             return redirect('client_register')
@@ -215,6 +219,7 @@ def resetpassword_validate(request,uidb64,token):
     
     if user is not None and default_token_generator.check_token(user,token): 
         request.session['uid'] = uid
+        request.session['email'] = user.email
         messages.success(request, 'Please reset your password')
         return redirect('resetPassword')
     else:
@@ -238,4 +243,5 @@ def resetPassword(request):
             messages.error(request, 'Password do not match!')
             return redirect('resetPassword')
     else:
-        return render(request, 'users/resetPassword.html')
+        email = request.session.get('email')
+        return render(request, 'users/resetPassword.html', {'email': email})

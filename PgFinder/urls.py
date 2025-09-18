@@ -32,6 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home , name='home'),
     path('user/', include('users.urls')),
+    path('pgs/', include('pgs.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
