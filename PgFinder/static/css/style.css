@@ -1,5 +1,5 @@
 :root {
-  --bg: #0b0b0c;
+  --bg: #ffffff;
   --fg: #0e0f11;
   --ink: #ffffff; /* pure white text */
   --muted: #d1d5db;
@@ -19,18 +19,11 @@ body {
   overflow-x: hidden;
   font-family: "Times New Roman", Times, serif;
   color: var(--ink);
-  background: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  /* background: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed; */
   background-size: cover;
+  background-color: white;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5); /* dark overlay */
-  backdrop-filter: blur(8px);  /* blur the background */
-  z-index: -1; /* behind all content */
-}
 
 /* Container */
 .container, .header, .hero, .grid, .right-card, .modal, .footer {

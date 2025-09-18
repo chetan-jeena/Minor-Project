@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-  {% block content %}
+  {% block content1 %}
   <!-- Hero + Search -->
   <section class="hero">
     <div class="container search-grid">
@@ -102,35 +102,6 @@
 
     </div>
   </section>
-
-  
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="sheet">
-      <div class="sheet-head">
-        <strong id="mTitle">PG name</strong>
-        <button class="btn-outline" id="mClose"><i class="ri-close-line"></i></button>
-      </div>
-      <div class="sheet-body">
-        <div>
-          <div class="gallery" id="mGallery"></div>
-          <p class="small" id="mDesc" style="margin-top:10px"></p>
-          <div class="amen" id="mAmen"></div>
-        </div>
-        <div>
-          <div class="dl"><i class="ri-map-pin-line"></i> <span id="mLoc"></span></div>
-          <div class="dl"><i class="ri-user-3-line"></i> <span id="mGender"></span></div>
-          <div class="dl"><i class="ri-star-fill"></i> <span id="mRating"></span></div>
-          <div class="dl"><i class="ri-route-line"></i> <span id="mDist"></span></div>
-          <div class="dl"><i class="ri-price-tag-3-line"></i> <b id="mPrice"></b> / month</div>
-          <div style="display:flex; gap:12px; margin-top:12px">
-            <button class="lead" id="btnVisit"><i class="ri-calendar-check-line"></i> Book a Visit</button>
-            <button class="btn-outline" id="btnCall"><i class="ri-phone-line"></i> Call / WhatsApp</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Leaflet JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
