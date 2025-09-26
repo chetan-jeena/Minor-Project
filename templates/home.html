@@ -36,7 +36,8 @@
     </div>
     <!-- Listing pg's -->
     <div class="grid" id="grid">
-      {% for pg in pg_listings %}
+    {% for pg in pg_listings %}
+
       <article class="card" data-id="${p.id}">
     <div class="cover">
      {% for pgimg in pg.images.all %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if pgs %}
+<div class="grid" id="grid">
+    {% for pg in pgs %}
+      <article class="card" data-id="${p.id}">
+          <div class="cover">
+              {% for pgimg in pg.images.all %}
+              <a href="{% url 'pg_detail' pg.slug %}">
+                  <img src="{{ pgimg.pg_image.url }}" alt="{{ pg.title }}">
+                </a>
+                {% endfor %}
+      <div class="pin">{{pg.address}},{{pg.city}} </div>
+    </div>
+    <div class="body">
+        <div class="title">
+            <div>
+          <h3>{{pg.title}}</h3>
+          <div class="muted">{{pg.sharing_type}}</div>
+        </div>
+        <div class="price">₹ {{pg.price_per_month}}</div>
+      </div>
+      <div class="amen">{{pg.amenities}}</div>
+      <div class="actions" style="margin-top:10px">
+          <a href="{% url 'pg_detail' pg.slug %}" class="btn btn-outline">View details</a>
+          {% comment %} <button class="btn-outline " data-view="${p.id}">View details</button> {% endcomment %}
+          {% comment %} <button class="btn" data-book="${p.id}">Book a visit</button> {% endcomment %}
+        </div>
+    </div>
+</article>
+{% endfor %}
+{% else %}
+<p>No PGs found matching your search.</p>
+</div>
+{% endif %}
+
+{% endblock %}

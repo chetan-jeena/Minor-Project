@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from pgs.models import PgListing, PGImage
 
 def home(request):
-    pg_listings = PgListing.objects.all()
+    pg_listings = PgListing.objects.filter(owner__is_owner=True)
     pg_images = PGImage.objects.all()
     context = {
         'pg_listings': pg_listings,

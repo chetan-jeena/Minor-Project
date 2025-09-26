@@ -11,6 +11,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 # Create your views here.
+from pgs.models import PgListing
 
 def user_login(request):
     if request.method == 'POST':
@@ -20,6 +21,8 @@ def user_login(request):
         if user is not None:
             auth.login(request, user)
             if user.is_owner:
+                if not PgListing.objects.filter(owner=user).exists():
+                    return redirect('pg_register')
                 return HttpResponse('owner_dashboard ')
             else:
                 return HttpResponse('client_dashboard')
@@ -181,7 +184,7 @@ def signup(request):
 
 def user_logout(request):
     logout(request)
-    return HttpResponse("Logged out successfully.")
+    return redirect('home')
 
 
 def forgotPassword(request):
