@@ -199,11 +199,12 @@
                                     </div>
 
                                     <!-- Terms and Conditions -->
+
                                     <div class="mb-2">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
                                             <label class="form-check-label" for="terms">
-                                                I agree to the <a href="#" class="text-decoration-none">Terms and Conditions</a> <span class="text-danger">*</span>
+                                                I agree to the <a href="{% url 'terms_conditions' %}" class="text-decoration-none">Terms and Conditions</a> <span class="text-danger">*</span>
                                             </label>
                                             <div class="invalid-feedback">
                                                 You must agree to the terms and conditions.
@@ -279,7 +280,23 @@
             }
         }
 
-    
+        aadharInput = document.getElementById('aadhar');
+        aadharInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^0-9]/g, '').slice(0, 12);
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += '-';
+                }
+                formattedValue += value[i];
+            }
+            e.target.value = formattedValue;
+        });
+
+        phoneInput = document.getElementById('phone');
+        
+
+        
     </script>
     {% endblock %}
 

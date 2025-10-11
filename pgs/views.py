@@ -91,3 +91,5 @@ def pg_register(request):
         return redirect('pgs')  # Redirect to a success page or the PG listing page
     else:   
         return render(request, 'users/owners/pgregister.html')
+    
+

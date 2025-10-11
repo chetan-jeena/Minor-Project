@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
+{% comment %} <div class="chips" id="amenitiesBar">
+  <span class="small">Filters:</span>
+</div>
+<div class="count" id="count">0 results</div>
+      <div class="sort small">
+        Sort by
+        <select id="sort">
+          <option value="relevance">Relevance</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Rating</option>
+          <option value="distance">Nearest</option>
+        </select>
+      </div>
+    </div> {% endcomment %}
 
 {% if pgs %}
 <div class="grid" id="grid">

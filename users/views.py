@@ -248,3 +248,9 @@ def resetPassword(request):
     else:
         email = request.session.get('email')
         return render(request, 'users/resetPassword.html', {'email': email})
+    
+
+
+
+def terms_conditions(request):
+    return render(request, 'users/terms&conditions.html')
