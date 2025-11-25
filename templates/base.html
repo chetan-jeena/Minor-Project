@@ -7,54 +7,10 @@
   <title>{% block title %}PG Finder • Simple & Fast{% endblock %}</title>
   <meta name="description" content="Find PGs near your college or office — filters, favorites, quick contact." />
   {% block link %}
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-sA+e2Jb3rVbQKkqgC3kG1g2h1xg2P9rV+l9g6q1gQ5M=" crossorigin=""/>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/nav.css' %}">
   {% endblock %}
   {% block newlink %}{% endblock %}
-  <style>
-    /*  extra styles for login/signup buttons */
-    .auth-buttons {
-      display: flex;
-      gap: 10px;
-      margin-left: 20px;
-    }
-    .auth-buttons a {
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .auth-buttons .login {
-      background: #f5f5f5;
-      color: #333;
-      border: 1px solid #ddd;
-    }
-    .auth-buttons .login:hover {
-      background: #e0e0e0;
-    }
-    .auth-buttons .signup {
-      background: #007bff;
-      color: #fff;
-    }
-    .auth-buttons .signup:hover {
-      background: #0056b3;
-    }
 
-    /* 👇 GAP BETWEEN BOOK A VISIT & VIEW DETAILS BUTTON */
-    #modal .sheet-body > div:last-child > div {
-      display: flex;
-      gap: 12px; /* <-- This adds gap between the buttons */
-      margin-top: 12px;
-    }
-  </style>
 </head>
 <body>
 
@@ -63,3 +19,5 @@
 {% block content %}{% endblock %}
 
 {% include "includes/footer.html" %}
+</body>
+</html>

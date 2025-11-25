@@ -25,7 +25,7 @@ def user_login(request):
                     return redirect('pg_register')
                 return HttpResponse('owner_dashboard ')
             else:
-                return HttpResponse('client_dashboard')
+                return redirect('home')
         else:
             messages.error(request, 'Invalid login credentials')
             return redirect('user_login')

@@ -17,7 +17,7 @@ def pg_detail(request, pg_slug):
         'pg': pg ,
         'user': owner
     }
-    return render(request, 'pgs/pg_detail.html', context)
+    return render(request, 'pgs/pg-specification.html', context)
 
 def search(request):
     query = request.GET.get('keyword')
