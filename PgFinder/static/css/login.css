@@ -19,7 +19,7 @@ body, html {
 
 
 /* NAVBAR */
-.navbar {
+/* .navbar {
   background-color: #1e1e2f;
   color: white;
   display: flex;
@@ -72,7 +72,7 @@ body, html {
 
 .nav-links button:hover {
   background-color: #0096b6;
-}
+} */
 
 /* LEFT SIDE: BRANDING */
 .login-left {
@@ -189,3 +189,58 @@ body, html {
     padding: 20px;
     }
 }
+
+
+/* Verification Message Container */
+.verification-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background-color: #f5f6fa;
+  padding: 20px;
+}
+
+.verification-message {
+  background-color: white;
+  padding: 50px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  text-align: center;
+  border-left: 5px solid #00d4ff;
+}
+
+.verification-message h2 {
+  color: #00d4ff;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.verification-message p {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.email-highlight {
+  background-color: #f0f0f0;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #1e1e2f;
+  word-break: break-all;
+}
+
+.verification-message a {
+  color: #00d4ff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.verification-message a:hover {
+  color: #0096b6;
+}
+
