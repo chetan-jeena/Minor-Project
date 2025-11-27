@@ -7,3 +7,4 @@ urlpatterns = [
   path('pgregister/', views.pg_register, name='pg_register'),
   path('<slug:pg_slug>/', views.pg_detail, name='pg_detail'),
 ]
+ 

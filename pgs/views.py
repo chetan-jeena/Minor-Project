@@ -40,7 +40,7 @@ def pgs(request):
     return render(request, 'pgs/pgs.html', context)
 
 
-@login_required(login_url='user_login')
+@login_required(login_url='user_login') 
 def pg_register(request):
     if not request.user.is_owner:
         return redirect('home')  
