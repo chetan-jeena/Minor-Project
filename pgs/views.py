@@ -4,6 +4,9 @@ from .models import PgListing
 from users.models import MyUser
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
+from decimal import Decimal, InvalidOperation
+from django.shortcuts import get_object_or_404, render
+import math
 
 # Create your views here.
 @login_required(login_url='user_login')
@@ -13,9 +16,27 @@ def pg_detail(request, pg_slug):
     except PgListing.DoesNotExist:
         raise Http404('PG not found') 
     owner = pg.owner
+    OFF_PERCENT = 37
+    price_raw = getattr(pg, 'price_per_month', 0) or 0
+    try:
+        price_dec = Decimal(str(price_raw))
+        mrp_dec = price_dec / (Decimal(1) - (Decimal(OFF_PERCENT) / Decimal(100)))
+        mrp = int(math.ceil(mrp_dec))
+    except (InvalidOperation, TypeError, ZeroDivisionError):
+        # fallback: use price as mrp if something goes wrong
+        try:
+            mrp = int(price_raw)
+        except Exception:
+            mrp = 0
+        price_dec = Decimal(str(mrp))
+
+    show_mrp = mrp > int(price_dec)
+
     context = {
-        'pg': pg ,
-        'user': owner
+        'pg': pg,
+        'mrp': mrp,
+        'off': OFF_PERCENT,
+        'show_mrp': show_mrp,
     }
     return render(request, 'pgs/pg-specification.html', context)
 

@@ -20,34 +20,59 @@
     </div>
   </div>
   
-  <!-- MAIN CONTENT -->
-  <div class="main-container">
-    <div class="dashboard-card">
-      <!-- LEFT -->
-      <div class="card-left">
-        <div class="thumb-column">
-          <img src="https://images.unsplash.com/photo-1757416654883-c73c67b3382b?q=80&w=1170&auto=format&fit=crop" data-large="https://images.unsplash.com/photo-1757416654883-c73c67b3382b?q=80&w=1170&auto=format&fit=crop" class="active-thumb">
-          <img src="https://plus.unsplash.com/premium_photo-1755612126280-6eab9cca8cb5?q=80&w=1171&auto=format&fit=crop" data-large="https://plus.unsplash.com/premium_photo-1755612126280-6eab9cca8cb5?q=80&w=1171&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1400&auto=format&fit=crop" data-large="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1400&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1674230227190-05b589f2f730?q=80&w=1170&auto=format&fit=crop" data-large="https://images.unsplash.com/photo-1674230227190-05b589f2f730?q=80&w=1170&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1400&auto=format&fit=crop" data-large="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1400&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1757416654883-c73c67b3382b?q=80&w=1170&auto=format&fit=crop" data-large="https://images.unsplash.com/photo-1757416654883-c73c67b3382b?q=80&w=1170&auto=format&fit=crop" class="active-thumb">
-          </div>
-          <img id="mainProductImg" class="main-img" src="https://images.unsplash.com/photo-1757416654883-c73c67b3382b?q=80&w=1170&auto=format&fit=crop" alt="Main">
+<!-- MAIN CONTENT -->
+<div class="main-container">
+  <div class="dashboard-card">
+    <!-- LEFT: IMAGE SECTION -->
+    <div class="card-left">
+      <div class="image-container">
+        <!-- MAIN IMAGE -->
+        <div class="main-image-wrapper">
+          {% if pg.images.all %}
+            {% for pgimg in pg.images.all %}
+              {% if forloop.first %}
+                <img id="mainProductImg" class="main-img" 
+                     src="{{ pgimg.pg_image.url }}" 
+                     alt="{{ pg.title }}">
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <img id="mainProductImg" class="main-img" 
+                 src="{% static 'images/pg-placeholder.png' %}" 
+                 alt="No image available">
+          {% endif %}
         </div>
-        
+        <!-- THUMBNAILS VERTICAL -->
+        <div class="thumb-column">
+          {% if pg.images.all %}
+            {% for pgimg in pg.images.all %}
+              <img src="{{ pgimg.pg_image.url }}" 
+                   data-large="{{ pgimg.pg_image.url }}" 
+                   alt="{{ pg.title }}"
+                   class="thumbnail {% if forloop.first %}active-thumb{% endif %}">
+            {% endfor %}
+          {% else %}
+            {% comment %} <img src="{% static 'images/pg-placeholder.png' }"  
+                 data-large="{% static 'images/pg-placeholder.png' }" 
+                 alt="No image available"
+                 class="thumbnail active-thumb"> {% endcomment %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
         <!-- RIGHT -->
         <div class="card-right">
-          <h1>Tom's Apartment (2BHK Set) | Naini Road | Place Of Brojen | Columbia</h1>
+          <h1>{{ pg.title }} | {{ pg.address }} | {{pg.state}} </h1>
           <div class="rating-row">
             <span class="rating">4.2 ★</span>
             <span class="rating-count">67,310 Ratings & 3,748 Reviews</span>
           </div>
           <hr>
           <div class="price-row">
-            <span class="price">₹6,249 /month</span>
-            <span class="mrp">₹9,999 /month</span>
-          <span class="off">37% off</span>
+            <span class="price">₹{{ pg.price_per_month }} /month</span>
+            <span class="mrp">₹{{mrp}} /month</span>
+          <span class="off">{{off}}% off</span>
         </div>
         <ul class="offers">
           <li>24 X 7 Water Supply</li>
@@ -78,7 +103,7 @@
         <div class="specs">
           <h3>Description</h3>
           <p>
-            Here is not accept any kind of parties and events. The PG is located in a very peaceful and calm area. The rooms are spacious and well-ventilated. The hostel provides all the basic amenities required for a comfortable stay. The staff is friendly and cooperative.
+{{ pg.description }}
           </p>
         </div>
       </div>
