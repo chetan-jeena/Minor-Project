@@ -95,7 +95,7 @@
     <!-- CARD 1 -->
      {% for pg in pg_listings %}
     <div class="card">
-      {% for pgimg in pg.images.all %}
+      {% for pgimg in pg.images.all|slice:":1" %}
       <img src="{{ pgimg.pg_image.url }}" alt="Hostel 1" />
       {% endfor %}
       <h3>{{pg.title}}</h3>
