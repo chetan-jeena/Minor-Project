@@ -67,7 +67,7 @@ def client_register(request):
             gender=gender,
             phone=phone,
             date_of_birth=dob,
-            address=address,
+            address=address, 
             is_owner=False
         )
         client_profile.set_password(password)

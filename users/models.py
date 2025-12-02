@@ -66,7 +66,7 @@ class MyUser(AbstractBaseUser):
     phone =  models.CharField(max_length=15,unique=True )
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
   
-
+ 
     is_owner = models.BooleanField(default=False)
     aadhar_card = models.CharField(max_length=20, unique=True, blank=True, null=True)
     address = models.TextField(blank=True, null=True)

@@ -8,6 +8,6 @@ def home(request):
     context = {
         'pg_listings': pg_listings,
         'pg_images': pg_images,
-    }
+    } 
 
     return render(request, 'home.html', context)

@@ -11,7 +11,7 @@ class PgListing(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     pin_code = models.CharField(max_length=10)
-    price_per_month = models.DecimalField(max_digits=10, decimal_places=2)
+    price_per_month = models.DecimalField(max_digits=10, decimal_places=2) 
     available_from = models.DateField(auto_now_add=False)
     is_available = models.BooleanField(default=True)
     type_of_pg = models.CharField(max_length=20,blank=True,null=True, choices=[
