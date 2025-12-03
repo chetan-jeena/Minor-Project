@@ -14,6 +14,10 @@
   --accent-2: #ff4081;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 /* constrain central content to a comfortable width */
 body.responsive {
   display: block;

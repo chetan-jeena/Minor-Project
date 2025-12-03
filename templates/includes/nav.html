@@ -1,14 +1,11 @@
 {% load static %}
 <nav class="navbar">
   <a class="logo" href="{% url 'home' %}">
-    <div class="logo">E-Hostel<span>& PG</span></div>
+    <div class="logo">PG Finder<span>& Hostel</span></div>
   </a>
   <ul class="nav-links">
     {% if user.is_authenticated %}
-      <li><a href="{% url 'home'%}">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">Visit</a></li>
+      
       
       <!-- User Profile Section -->
       <li class="user-profile">

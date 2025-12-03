@@ -13,7 +13,7 @@
   const dots = document.querySelectorAll(".dot");
 
   let index = 0;
-
+ 
   function showSlide(i) {
     if (i >= slides.length) index = 0;
     if (i < 0) index = slides.length - 1;
